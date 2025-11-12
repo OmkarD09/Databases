@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Chatapp</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Welcome to the Mini Chatapp</h1> 
+    <form action="/chats/new" method="GET">
+        <button>New Chat</button>
+    </form>  
+        <% for(let chat of chats) { %>
+            <div class="chats">
+            <p>From :<i><%= chat.from %>:</i></p>
+                <div class="message">
+                    <%= chat.message %>
+                </div>
+            <p>To : <i><%= chat.to %></i></p>
+            <hr>
+            </div>
+            <br>
+        <% } %>
+    
+</body>
+</html>

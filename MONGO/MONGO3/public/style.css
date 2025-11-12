@@ -1,0 +1,16 @@
+.chats {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    display: inline-block;
+    border-radius: 16px;
+}
+
+.message {
+    background-color: #f9f9f9;
+    padding: 5px;
+    border: 1px solid #eee;
+    border-radius: 3px;
+    margin: 5px 0;
+}
