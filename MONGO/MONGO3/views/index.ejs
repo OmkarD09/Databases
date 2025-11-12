@@ -16,9 +16,19 @@
             <p>From :<i><%= chat.from %>:</i></p>
                 <div class="message">
                     <%= chat.message %>
+                    <br>
+                    <form action="/chats/<%= chat._id %>" method="GET">
+                        <button>Edit</button>
+                    </form>
+
+                    <br>
+                    <form method="POST" action="/chats/<%= chat._id %>?_method=DELETE">
+                        <button type="submit">Delete</button>
+                    </form>
                 </div>
             <p>To : <i><%= chat.to %></i></p>
             <hr>
+            <p>Created at : <%= chat.created_at.toLocaleString() %></p>
             </div>
             <br>
         <% } %>
