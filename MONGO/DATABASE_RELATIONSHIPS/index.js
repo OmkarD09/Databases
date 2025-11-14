@@ -25,36 +25,47 @@ const customerSchema = new mongoose.Schema({
 const Order = mongoose.model('Order', orderSchema);
 const Customer = mongoose.model('Customer', customerSchema);
 
-const addCustomer = async () => {
-    let customer = new Customer({
-        name: 'Jane Smith',
-        email: 'jane.smith@example.com'
-    });
+// const addCustomer = async () => {
+//     let customer = new Customer({
+//         name: 'Jane Smith',
+//         email: 'jane.smith@example.com'
+//     });
 
-    let order1 = await Order.findOne({ item: 'Laptop' });
-    let order2 = await Order.findOne({ item: 'Phone' });
+//     let order1 = await Order.findOne({ item: 'Laptop' });
+//     let order2 = await Order.findOne({ item: 'Phone' });
 
-    customer.orders.push(order1);
-    customer.orders.push(order2);
+//     customer.orders.push(order1);
+//     customer.orders.push(order2);
 
-    let result = await customer.save();
-    console.log('Customer with orders saved:', result);
+//     let result = await customer.save();
+//     console.log('Customer with orders saved:', result);
     
+// }
+
+// const addOrders = async() => {
+//     await Order.deleteMany({});
+//     let res = await Order.insertMany([
+//         { item: 'Laptop', price: 1200 },
+//         { item: 'Phone', price: 800 }
+//     ]);
+//     console.log("Orders added.");
+// }
+
+// async function run() {
+//     await addOrders();
+//     await addCustomer();
+//     mongoose.connection.close();
+// }
+
+// run();
+
+const findCustomerWithOrders = async () => {
+    let customer = await Customer
+        .findOne({ name: 'Jane Smith' })
+        .populate('orders');
+    console.log('Customer with populated orders:', customer);
 }
 
-const addOrders = async() => {
-    await Order.deleteMany({});
-    let res = await Order.insertMany([
-        { item: 'Laptop', price: 1200 },
-        { item: 'Phone', price: 800 }
-    ]);
-    console.log("Orders added.");
-}
+findCustomerWithOrders();
 
-async function run() {
-    await addOrders();
-    await addCustomer();
-    mongoose.connection.close();
-}
 
-run();
